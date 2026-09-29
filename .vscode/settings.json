@@ -1,0 +1,27 @@
+{
+  // LaTeX Workshop baut mit seinem Standardrezept (latexmk) im Ordner der Hauptdatei: latex/main.pdf liegt neben latex/main.tex
+
+  // LaTeX-Hilfsdateien im Explorer ausblenden (latex/ und latex/chapters/); main.pdf bleibt sichtbar.
+  // Mit Explorer Exclude Manager per Klick umschaltbar. Für Git stehen dieselben Muster in .gitignore.
+  "files.exclude": {
+    "**/*.aux": true,
+    "**/*.bbl": true,
+    "**/*.blg": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.lof": true,
+    "**/*.log": true,
+    "**/*.lol": true,
+    "**/*.lot": true,
+    "**/*.out": true,
+    "**/*.synctex.gz": true,
+    "**/*.synctex(busy)": true,
+    "**/*.toc": true,
+    "**/*.xdv": true
+  },
+  // Zustand von Explorer Exclude Manager (merkt sich vorübergehend eingeblendete Einträge)
+  "explorerExcludeManager.backup": {},
+
+  // Claude Code im unteren Panel statt in der Seitenleiste
+  "claudeCode.preferredLocation": "panel"
+}

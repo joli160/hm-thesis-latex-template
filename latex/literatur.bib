@@ -1,0 +1,45 @@
+% =========================================================
+% Quellenverzeichnis — IEEE-Stil (ieeetr-hm)
+% PDF-Nummerierung: automatisch nach Reihenfolge der ersten \cite-Nennung im
+%   Fließtext — unabhängig von der Reihenfolge in dieser Datei.
+%
+% FORMATKONVENTION Online-Quellen:
+%   Autor/Organisation: "Titel" (Dokumentdatum), Online: URL (Zugriff am ...)
+%   Das Dokumentdatum steht damit VOR der URL. Da ieeetr das year-Feld bei
+%   misc-Einträgen stets hinter howpublished ausgibt, steht die Datumsangabe
+%   am Anfang des howpublished-Felds und das year-Feld bleibt leer. Doppelte
+%   geschweifte Klammern um den Titel erhalten die Groß-/Kleinschreibung.
+%
+% Kurz vor der Abgabe alle URLs aufrufen und die Zugriffsdaten aktualisieren.
+%
+%   ACHTUNG: In diesem Kommentarkopf darf kein "at"-Zeichen stehen. BibTeX
+%   liest es auch innerhalb von Kommentarzeilen als Beginn eines Eintrags und
+%   bricht mit "I was expecting a {" ab.
+% =========================================================
+
+% --- Standards: immer die Primärquelle (RFC, Spezifikation) ---
+% Nicht jeder RFC hat eine STD-Nummer — nur angeben, wenn die RFC-Seite sie nennt.
+@misc{rfc9110,
+    author       = {{Internet Engineering Task Force (IETF)}},
+    title        = {{HTTP Semantics}},
+    howpublished = {RFC 9110, STD 97 (2022-06), Online: \url{https://www.rfc-editor.org/info/rfc9110/}
+                    (Zugriff am JJJJ-MM-TT)}
+}
+
+% --- Offizielle Dokumentation: die Version zitieren, die die Arbeit einsetzt ---
+@misc{python-reference,
+    author       = {{Python Software Foundation}},
+    title        = {{The Python Language Reference, Python 3.13}},
+    howpublished = {Online: \url{https://docs.python.org/3.13/reference/}
+                    (Zugriff am JJJJ-MM-TT)}
+}
+
+% --- Print-Medien ---
+@book{tanenbaum-betriebssysteme,
+    author    = {Tanenbaum, Andrew S. and Bos, Herbert},
+    title     = {Modern Operating Systems},
+    edition   = {4. Auflage},
+    address   = {Boston},
+    publisher = {Pearson},
+    year      = {2015}
+}

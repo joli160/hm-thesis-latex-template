@@ -1,0 +1,21 @@
+% !TeX root = ../main.tex
+% Das Quellenverzeichnis ist ein Unterabschnitt des Kapitels "Verzeichnisse".
+%
+% Die thebibliography-Umgebung von scrreprt setzt ihre Überschrift über
+% \chapter*, was einen Seitenumbruch auslöst — die Liste würde von ihrer
+% Überschrift getrennt. Innerhalb der Gruppe wird \chapter* daher zum no-op;
+% die Überschrift setzt der \section-Befehl, wodurch Nummerierung,
+% Inhaltsverzeichnis-Eintrag und PDF-Bookmark regulär entstehen.
+\section{Quellenverzeichnis}
+\label{sec:quellenverzeichnis}
+
+\begingroup
+\makeatletter
+\renewcommand{\chapter}{\@ifstar\@gobble\@gobble}
+\makeatother
+% ieeetr-hm.bst: Ableitung von ieeetr.bst, setzt Titel in Anführungszeichen
+% UND kursiv und behält die Groß-/Kleinschreibung aus literatur.bib bei.
+% Nummerierung nach Reihenfolge der ersten Nennung im Text.
+\bibliographystyle{ieeetr-hm}
+\bibliography{literatur}
+\endgroup

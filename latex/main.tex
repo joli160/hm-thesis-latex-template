@@ -1,0 +1,145 @@
+% !TeX root = main.tex
+% --- PRÄAMBEL ---
+% Satzspiegel, Schrift und Zeilenabstand entsprechen typischen Hochschulvorgaben
+% (10–12 pt, 1,2- bis 1,4-facher Zeilenabstand). Mit den Vorgaben des eigenen
+% Prüfers abgleichen: .claude/instructions/vorgaben.md
+\documentclass[10pt, a4paper, parskip=half, ngerman, headings=small]{scrreprt}
+% 10 pt, A4, Absätze mit halbem Zeilenabstand statt Einzug, kleinere Überschriften (KOMA-Script)
+
+% --- SPRACHE & SCHRIFT ---
+\usepackage[T1]{fontenc}               % Umlaute als eigene Glyphen: korrekte Silbentrennung, PDF-Suche und Kopieren
+\usepackage[ngerman]{babel}            % deutsche Trennmuster, Datumsformat, Bezeichnungen ("Abbildung", "Inhaltsverzeichnis")
+\usepackage{mathptmx}                  % Schrift Times
+\usepackage{microtype}                 % Randausgleich und feine Zeichenabstände: weniger Überläufe über den rechten Rand
+\setlength{\emergencystretch}{3em}     % letzte Reserve: schwierige Zeilen etwas dehnen statt überlaufen lassen
+\usepackage{setspace}                  % Zeilenabstand einstellbar
+\setstretch{1.3}                       % 1,3-facher Zeilenabstand (Vorgabe: 1,2 bis 1,4)
+\setkomafont{disposition}{\normalcolor\bfseries} % Überschriften in Times statt KOMA-Standard (serifenlos)
+
+% --- ABBILDUNGEN & LISTEN ---
+\usepackage{graphicx}                  % \includegraphics für PNG- und PDF-Abbildungen
+\usepackage{float}                     % Platzierung [H]: Abbildung exakt an der Stelle im Quelltext
+\usepackage{enumitem}                  % Listenabstände je Liste einstellbar (sonst greift parskip=half zwischen \item)
+\usepackage{xcolor}                    % Farben, hier für den grauen Rahmen in \screenshot
+
+% Screenshot mit dezentem grauem Rahmen; optionales Argument = Gesamtbreite.
+% Diagramme (assets/diagrams/*.png) ohne Rahmen mit \includegraphics einbinden.
+\newcommand{\screenshot}[2][\textwidth]{%
+    \setlength{\fboxsep}{4pt}%
+    \setlength{\fboxrule}{0.4pt}%
+    \fcolorbox{black!25}{white}{%
+        \includegraphics[width=\dimexpr#1-2\fboxsep-2\fboxrule\relax]{#2}}%
+}
+
+% --- METADATEN (Titelseite + PDF) ---
+\newcommand{\thesistitel}{Titel der Arbeit}
+\newcommand{\thesisautor}{Vorname Nachname}
+
+% --- HYPERLINKS & PDF ---
+\usepackage{hyperref}                  % klickbare Verweise, Zitate, URLs und PDF-Lesezeichen (Pflicht laut Vorgaben)
+\hypersetup{
+    colorlinks=true,                   % Links als farbiger Text statt umrandeter Kästen
+    linkcolor=black,                   % interne Verweise schwarz, damit der Fließtext ruhig bleibt
+    citecolor=black,                   % Zitate [1] schwarz
+    urlcolor=blue,                     % externe URLs erkennbar blau
+    bookmarksnumbered=true,            % Lesezeichen mit Kapitelnummern, abgleichbar mit dem Inhaltsverzeichnis
+    bookmarksopen=true,                % Lesezeichen beim Öffnen aufgeklappt ...
+    bookmarksopenlevel=2,              % ... bis zur Abschnittsebene
+    pdftitle={\thesistitel},           % Fenstertitel im PDF-Reader statt des Dateinamens
+    pdfauthor={\thesisautor}
+}
+
+\usepackage{geometry}                  % Seitenränder
+\geometry{a4paper, left=3cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% --- ABKÜRZUNGSVERZEICHNIS ---
+\usepackage{acro}                      % \ac{...}: Langform bei Erstnennung, danach Kurzform; erzeugt das Verzeichnis
+\acsetup{
+    list/display = all,                % alle deklarierten Abkürzungen auflisten
+    list/heading = section,            % als Unterabschnitt im Kapitel "Verzeichnisse"
+    list/name    = {Abkürzungsverzeichnis},
+}
+\input{chapters/08.1_Abkuerzungsverzeichnis.tex}
+
+% Abbildungs- und Tabellenverzeichnis als nummerierte Unterabschnitte im Kapitel
+% "Verzeichnisse" statt als eigene Kapitel (Struktur laut Vorgaben)
+\AtBeginDocument{%
+    \setuptoc{lof}{leveldown,numbered}%
+    \setuptoc{lot}{leveldown,numbered}%
+}
+
+\begin{document}
+
+% --- TITELSEITE ---
+\begin{titlepage}
+    % Logo der Hochschule München. Für eine andere Hochschule die Datei ersetzen
+    % oder löschen — ohne Datei entfällt das Logo, der Build läuft weiter.
+    \IfFileExists{assets/hm-logo.png}{%
+        \makebox[\textwidth]{\hfill\includegraphics[height=1.6cm]{assets/hm-logo.png}}%
+    }{}
+    \vspace{2cm}
+
+    \begin{center}
+        {\huge\bfseries \thesistitel \par}
+
+        \vspace{1.2cm}
+        {\large \textbf{Bachelorarbeit} \\}
+        \vspace{0.2cm}
+        zur Erlangung des akademischen Grades Bachelor of Science (B.Sc.)
+
+        \vspace{1.2cm}
+        Vorgelegt an der \\
+        Hochschule München \\
+        Fakultät \\
+
+        \vspace{1.2cm}
+        Eingereicht von \\
+        \thesisautor \\
+        Studiengang: \dots \\
+        Matrikelnummer: \dots
+    \end{center}
+
+    \vfill
+    \begingroup
+        \renewcommand{\arraystretch}{1.0}
+        \begin{tabular}{@{}ll@{}}
+            Erstprüfer:  & \dots \\
+            Zweitprüfer: & \dots \\
+            Betreuer:    & \dots \\
+            Abgabedatum: & JJJJ-MM-TT \\
+        \end{tabular}
+    \endgroup
+\end{titlepage}
+
+\input{chapters/00_Kurzfassung.tex}
+\input{chapters/00_Abstract.tex}
+
+\tableofcontents
+\clearpage
+
+% --- KAPITEL ---
+% Struktur "Arbeit mit Anforderungsanalyse". Bei einer Arbeit mit bekannten
+% Anforderungen entfällt 03_Anforderungsanalyse; die Anforderungen stehen dann
+% in Abschnitt 1.2 (siehe Kommentar in 01_Einleitung.tex).
+\input{chapters/01_Einleitung.tex}
+\input{chapters/02_Grundlagen.tex}
+\input{chapters/03_Anforderungsanalyse.tex}
+\input{chapters/04_Konzipierung_der_Loesung.tex}
+\input{chapters/05_Implementierung.tex}
+\input{chapters/06_Tests_und_Testergebnisse.tex}
+\input{chapters/07_Zusammenfassung_und_Ausblick.tex}
+
+% --- VERZEICHNISSE ---
+\clearpage
+\chapter{Verzeichnisse}
+\label{cha:verzeichnisse}
+
+\printacronyms
+\input{chapters/08.2_Quellenverzeichnis.tex}
+\listoffigures
+\listoftables
+
+\clearpage
+\input{chapters/09_Erklaerung_zur_Selbstaendigkeit.tex}
+\input{chapters/10_Anhang.tex}
+\end{document}

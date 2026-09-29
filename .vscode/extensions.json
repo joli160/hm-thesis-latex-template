@@ -1,0 +1,8 @@
+{
+  // GitHub Copilot ist in VS Code eingebaut und muss nicht installiert werden.
+  "recommendations": [
+    "james-yu.latex-workshop",
+    "anthropic.claude-code",
+    "madcatpx.explorer-exclude-manager"
+  ]
+}

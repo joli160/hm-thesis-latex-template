@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Edit(./latex/**)",
+      "Edit(./Dokumentation/**)",
+      "Edit(./.claude/**)",
+      "Edit(./.vscode/**)",
+      "Edit(./README.md)",
+      "Edit(./AGENTS.md)",
+      "Edit(./CLAUDE.md)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)"
+    ],
+    "ask": [
+      "Edit(./latex/literatur.bib)"
+    ],
+    "deny": [
+      "Edit(./latex/ieeetr-hm.bst)",
+      "Bash(git add*)",
+      "Bash(git stage*)",
+      "Bash(git rm*)",
+      "Bash(git commit*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(rm -rf *)",
+      "Bash(* --no-verify*)",
+      "Bash(git push --force*)"
+    ]
+  }
+}
